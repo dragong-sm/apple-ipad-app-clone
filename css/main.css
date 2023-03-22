@@ -1,0 +1,144 @@
+body {
+  /* 명시적으로 폰트 기본 값 표기 */
+  font-size: 16px;
+  line-height: 1;
+  /* 폰트 적용 */
+  font-family: "Roboto", "Noto Sans KR", sans-serif;
+  /* 줄바꿈 처리 */
+  word-break: keep-all;
+}
+
+/* HEADER */
+header {
+  background-color: #3a3a3a;
+}
+
+header .inner {
+  max-width: 1020px;
+  margin: 0 auto;
+}
+
+header ul.menu {
+  height: 44px;
+  /* 수평정렬 */
+  display: flex;
+  /* 양 끝을 붙이고 중간은 균등하게 공간 분배 */
+  justify-content: space-between;
+}
+
+header ul.menu > li {
+  display: flex;
+  position: relative;
+}
+
+header ul.menu > li > a {
+  padding: 0 10px;
+  font-size: 11px;
+  display: flex;
+  /* li태그도 flex여야 적용됨 */
+  align-items: center;
+  color: #f5f5f5;
+  opacity: 0.8;
+  /* 밑줄 제거 */
+  text-decoration: none;
+}
+
+header ul.menu > li.apple-logo > a,
+header ul.menu > li.search-starter > a,
+header ul.menu > li.basket-starter > a {
+  width: 14px;
+  /* 글자가 구조적으로 존재하나, 눈에 보이지 않도록 설정 */
+  text-indent: -9999px;
+  background-repeat: no-repeat;
+  /* 좌우는 center 상하는 13px */
+  background-position: center 13px;
+}
+
+header ul.menu > li.apple-logo > a {
+  background-image: url("../images/header_apple.svg");
+}
+
+header ul.menu > li.search-starter > a {
+  background-image: url("../images/header_search.svg");
+}
+
+header ul.menu > li.basket-starter > a {
+  background-image: url("../images/header_bag.svg");
+}
+
+header ul.menu > li > a:hover {
+  opacity: 1;
+}
+
+/* HEADER / Menu / Basket */
+header .basket {
+  /* display: none; */
+  width: 290px;
+  padding: 10px 20px;
+  border: 1px solid #d2d2d2;
+  border-radius: 10px;
+  box-sizing: border-box;
+  background-color: #fff;
+  position: absolute;
+  /* 장바구니 영역에서 위에서 100% 부분 : 바로 밑에 붙음 */
+  top: calc(100% + 4px);
+  right: -6px;
+  transition: 0.5s;
+  visibility: hidden;
+  opacity: 0;
+}
+
+header .basket.show {
+  /* display: block; */
+  visibility: visible;
+  opacity: 1;
+}
+
+header .basket .arrow {
+  width: 20px;
+  height: 10px;
+  position: absolute;
+  top: -10px;
+  right: 12px;
+  overflow: hidden;
+}
+
+header .basket .arrow::before {
+  content: "";
+  width: 12px;
+  height: 12px;
+  border: 1px solid#D2D2D2;
+  background-color: #fff;
+  transform: rotate(45deg);
+  transform-origin: 0 0;
+  position: absolute;
+  top: 0;
+  left: 50%;
+}
+
+header .basket .message {
+  padding: 30px 0;
+  font-size: 13px;
+  color: #6e6e6e;
+  text-align: center;
+}
+
+header .basket ul {
+  margin-top: 10px;
+}
+
+header .basket ul li {
+  border-top: 1px solid #d2d2d2;
+}
+
+header .basket ul li a {
+  display: block;
+  padding: 13px;
+  font-size: 13px;
+  color: #0071e3;
+  text-decoration: none;
+}
+
+header .basket ul li a:hover {
+  text-decoration: underline;
+}
