@@ -1106,6 +1106,23 @@ nav .menu li.active:hover a {
   transform: translate(533px, 485px);
 }
 
+/* Accessibility */
+.accessbility {
+  margin-top: 266px;
+  margin-bottom: 170px;
+}
+.accessbility h1 {
+  width: 384px;
+  height: 270px;
+  background-image: url("../images/accessibility_headline.png");
+}
+.accessbility .infos {
+  margin-top: 20px;
+}
+.accessbility figure {
+  transform: translate(470px, -620px);
+}
+
 /* spirite-icon */
 
 @keyframes sprite-icon {
