@@ -31,7 +31,6 @@ window.addEventListener("click", function () {
 // ------------------------------------------------------------------
 
 // 검색창
-
 const headerEl = document.querySelector("header");
 // 전개 연산자
 const headerMenuEls = [...headerEl.querySelectorAll("ul.menu > li")];
@@ -43,13 +42,17 @@ const searchInputEl = searchWrapEl.querySelector("input");
 const searchDelayEls = [...searchWrapEl.querySelectorAll("li")];
 
 searchStarterEl.addEventListener("click", showSearch);
-searchCloserEl.addEventListener("click", hideSearch);
+searchCloserEl.addEventListener("click", function (event) {
+  event.stopPropagation();
+  hideSearch();
+});
 searchShadowEl.addEventListener("click", hideSearch);
 
 function showSearch() {
+  // console.log("searching");
   headerEl.classList.add("searching");
   // html 문서의 최상위 요소
-  document.documentElement.classList.add("fixed");
+  stopScroll();
   headerMenuEls.reverse().forEach(function (el, index) {
     el.style.transitionDelay = (index * 0.4) / headerMenuEls.length + "s";
   });
@@ -62,8 +65,9 @@ function showSearch() {
 }
 
 function hideSearch() {
+  // console.log("searching remove");
   headerEl.classList.remove("searching");
-  document.documentElement.classList.remove("fixed");
+  playScroll();
   headerMenuEls.reverse().forEach(function (el, index) {
     el.style.transitionDelay = (index * 0.4) / headerMenuEls.length + "s";
   });
@@ -75,6 +79,53 @@ function hideSearch() {
   // 인풋창 초기화
   searchInputEl.value = "";
 }
+
+function playScroll() {
+  document.documentElement.classList.remove("fixed");
+}
+
+function stopScroll() {
+  document.documentElement.classList.add("fixed");
+}
+
+// ------------------------------------------------------------------
+
+// 헤더 메뉴 토글
+const menuStarterEl = document.querySelector("header .menu-starter");
+menuStarterEl.addEventListener("click", function () {
+  if (headerEl.classList.contains("menuing")) {
+    // console.log("menuing remove");
+    headerEl.classList.remove("menuing");
+    searchInputEl.value = "";
+    playScroll();
+  } else {
+    // console.log("menuing");
+    headerEl.classList.add("menuing");
+    stopScroll();
+  }
+});
+
+// ------------------------------------------------------------------
+
+// 헤더 검색
+const searchTextFieldEl = document.querySelector("header .textfield");
+const searchCancelEl = document.querySelector("header .search-canceler");
+searchTextFieldEl.addEventListener("click", function () {
+  headerEl.classList.add("searching--mobile");
+  searchInputEl.focus();
+});
+searchCancelEl.addEventListener("click", function () {
+  headerEl.classList.remove("searching--mobile");
+});
+
+//
+window.addEventListener("resize", function () {
+  if (window.innerWidth <= 740) {
+    headerEl.classList.remove("searching");
+  } else {
+    headerEl.classList.remove("searching--mobile");
+  }
+});
 
 // ------------------------------------------------------------------
 
