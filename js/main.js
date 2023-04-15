@@ -248,6 +248,7 @@ navigations.forEach(function (nav) {
   mapEl.innerHTML = /* html */ `
   <h3>
     <span class="text">${nav.title}</span>
+    <span class="icon">+</span>
   </h3>
   <ul>
     ${mapList}
@@ -262,3 +263,14 @@ navigations.forEach(function (nav) {
 // copyright 부분 연도 표시
 const thisYearEl = document.querySelector("span.this-year");
 thisYearEl.textContent = new Date().getFullYear();
+
+// ------------------------------------------------------------------
+
+// footer toggle
+const mapEls = document.querySelectorAll("footer .navigations .map");
+mapEls.forEach(function (el) {
+  const h3El = el.querySelector("h3");
+  h3El.addEventListener("click", function () {
+    el.classList.toggle("active");
+  });
+});
